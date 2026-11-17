@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>ASCII Art Generator ☀️</h1>
+
+        <form action="/ascii-art" method="POST">
+            <div class="input-group">
+                <label for="text">Enter Text:</label>
+                <textarea id="text" name="text" required placeholder="Type your Tubby message here...">{{ .InputText }}</textarea>
+            </div>
+
+            <div class="banner-title">Choose Banner Style:</div>
+            
+            <div class="banner-options">
+                <!-- Tinky Winky / Standard -->
+                <label class="tubby-card purple">
+                    <input type="radio" name="banner" value="standard" required {{ if eq .Banner "standard" }}checked{{ end }}>
+                    <img src="/static/twinky.png" alt="Tinky Winky" class="tubby-avatar">
+                    <span>Standard</span>
+                </label>
+
+                <!-- Dipsy / Shadow -->
+                <label class="tubby-card green">
+                    <input type="radio" name="banner" value="shadow" required {{ if eq .Banner "shadow" }}checked{{ end }}>
+                    <img src="/static/dipsy.png" alt="Dipsy" class="tubby-avatar">
+                    <span>Shadow</span>
+                </label>
+
+                <!-- Po / Thinkertoy -->
+                <label class="tubby-card red">
+                    <input type="radio" name="banner" value="thinkertoy" required {{ if eq .Banner "thinkertoy" }}checked{{ end }}>
+                    <img src="/static/po.png" alt="Po" class="tubby-avatar">
+                    <span>Thinkertoy</span>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Eh-Oh! Generate! ✨</button>
+        </form>
+
+        {{ if .Result }}
+            <div class="result-container">
+                <h2>Result:</h2>
+                <pre>{{ .Result }}</pre>
+            </div>
+        {{ end }}
+    </div>
+
+</body>
+</html>
